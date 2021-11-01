@@ -1,0 +1,181 @@
+---
+title: vacciCation
+output: 
+  html_document:
+    includes:
+      in_header: GA_Script.html
+params:
+  attractions_table: "nothing"
+  cities_table: "nothing"
+  date_community: "unknown"
+  all_predictions: "unknown"
+  all_time_series: "unknown"
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+library(pals)
+library(DescTools)
+options(DT.warn.size=FALSE)
+```
+
+This site is intended to help inform people about risks for various locations: what is community spread, what fraction of people your family will encounter who have been fully vaccinated, etc. This is especially important as places trust that anyone who is not fully vaccinated will choose to wear a mask. Best places have blue across the board, ones with problems are red. See the about tab for more information. 
+
+* Community transmission level comes from [here](https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9). High is worst, followed by Substantial, Moderate, and Low. Precautions to prevent spread are needed for all levels. High requires prioritizing essential services like health care, food, and schools; Substantial suggests limiting everyday activities. 
+* "Fully vaccinated" shows the percentage of people in a county who have had the full course of vaccines (all ages and those under 65).
+* "Vaccine hesitant" shows the percentage of individuals surveyed who would "probably not get a vaccine" or "definitely not get a vaccine."
+* "State ICU beds filled" shows the percentage of intensive care unit beds which are occupied over the previous available week of data. 
+
+## {.tabset}
+
+### Attractions
+
+Start typing above each column to filter for all text matching that (for example, start typing Disney in the Location column box to find info on the counties containing the Disney parks). You can also use the arrows above each column to sort increasing or decreasing by the value in that column. Click on a county for more information.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+pretty_output <- function(output_table) {
+	output_table$'County, State' <- paste0('<a href="https://vaccication.org/counties/', gsub(" ", "_", gsub(",", "", output_table$'County, State')), '.html">', output_table$'County, State', "</a>")
+  output_table$'Community Transmission' <- gsub("High", "4: High", output_table$'Community Transmission')
+  output_table$'Community Transmission' <- gsub("Substantial", "3: Substantial", output_table$'Community Transmission')
+  output_table$'Community Transmission' <- gsub("Moderate", "2: Moderate", output_table$'Community Transmission')
+  output_table$'Community Transmission' <- gsub("Low", "1: Low", output_table$'Community Transmission')
+
+DT::datatable(output_table,rownames=FALSE, filter="top", escape=FALSE) %>% 
+    formatStyle(
+		'Community Transmission',
+		color = styleEqual(c('4: High', '3: Substantial', '2: Moderate', '1: Low'), c('white', 'black', 'black', 'white')),
+		backgroundColor = styleEqual(c('4: High', '3: Substantial', '2: Moderate', '1: Low'), c('red', 'orange', 'yellow', 'blue'))
+	) %>% 
+	formatStyle(
+    	'Fully Vaccinated (all)',
+    	backgroundColor = styleInterval(seq(from=0, to=70, by=1), DescTools::SetAlpha(rev(pals::coolwarm(n=72)), 0.5))
+  	) %>% 
+	formatStyle(
+    	'Fully Vaccinated (<65)',
+    	backgroundColor = styleInterval(seq(from=0, to=70, by=1), DescTools::SetAlpha(rev(pals::coolwarm(n=72)), 0.5))
+  	) %>% 
+	formatStyle(
+    	'Vaccine Hesitant',
+    	backgroundColor = styleInterval(seq(from=0, to=30, by=1), DescTools::SetAlpha(pals::coolwarm(n=32), 0.5))
+  	) %>% 
+	formatStyle(
+    	'State ICU Beds Filled',
+    	backgroundColor = styleInterval(c(80, 90), DescTools::SetAlpha(c("gray", "salmon", "red"), 0.5))
+  	) 
+}
+
+pretty_output(params$attractions_table)
+```
+
+### Populated Places
+
+Start typing above each column to filter for all text matching that. You can also use the arrows above each column to sort increasing or decreasing by the value in that column. This only has populated places with 5,000 people or more as well as areas listed in the [American Indian Reservations / Federally Recognized Tribal Entities dataset](https://hub.arcgis.com/datasets/2e915ef3df48422283e5b2c7d89dfcba?geometry=-1.054%2C2.091%2C138.867%2C77.153). Note that all covid information presented is at the scale of US counties, but for tribal nations their health departments may have more relevant information.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#DT::datatable(params$cities_table,rownames=FALSE, filter="top")
+pretty_output(params$cities_table)
+
+```
+
+### Nationwide maps
+
+We can look at the map by county (except for Texas, which does not break down data by county), to see the proportion of people fully vaccinated now:
+
+```{r, echo=FALSE, eval=TRUE, dpi=72, out.width="800px"}
+time_data <- params$all_predictions
+time_data$PercentFullyVaccinated <- as.numeric(time_data$PercentFullyVaccinated)
+time_data$PercentFullyVaccinated[time_data$PercentFullyVaccinated>100] <- 100 #lucky counties
+time_data$ReportDate <- as.Date(time_data$ReportDate)
+time_data$fips <- time_data$FIPS
+time_data_observed <- time_data[grepl("observed", time_data$Type),]
+last_observation <- max(time_data_observed$ReportDate)
+time_data_most_recent <- subset(time_data_observed, time_data_observed$ReportDate==last_observation)
+
+print(usmap::plot_usmap(data=subset(time_data_most_recent, Type=="All Ages (observed)"), values="PercentFullyVaccinated", color=NA) + theme(legend.position = "none") + theme(legend.position = "bottom") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_stepsn(colours=c("purple4", "darkmagenta", head(rev(pals::turbo(6)),5), "blue"), breaks=c(10,20, 30, 40, 50, 60, 70), limits=c(0,100)) + labs(caption="From vacciCation.org") + labs(fill = "% Fully\nVaccinated") + ggtitle(paste0("Vaccination rate for all ages\n(data from ",last_observation, ")" )))
+
+print(usmap::plot_usmap(data=subset(time_data_most_recent, Type=="Under 65 (observed)"), values="PercentFullyVaccinated", color=NA) + theme(legend.position = "none") + theme(legend.position = "bottom") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_stepsn(colours=c("purple4", "darkmagenta", head(rev(pals::turbo(6)),5), "blue"), breaks=c(10,20, 30, 40, 50, 60, 70), limits=c(0,100)) + labs(caption="From vacciCation.org") + labs(fill = "% Fully\nVaccinated") + ggtitle(paste0("Vaccination rate for those under 65\n(data from ",last_observation, ")" )))
+
+
+time_data2 <- params$all_time_series
+time_data2$Percentage <- as.numeric(time_data2$Percentage)
+time_data2$Percentage[time_data2$Percentage>100] <- 100 #lucky counties
+time_data2$Date <- as.Date(time_data2$Date)
+time_data2$fips <- time_data2$FIPS
+last_observation <- max(time_data2$Date)
+
+time_data2_12_to_17 <- subset(time_data2, Group=="12-17" & Type=="FullyVaccinated" & !is.na(Percentage))
+print(usmap::plot_usmap(data=time_data2_12_to_17, values="Percentage", color=NA) + theme(legend.position = "none") + theme(legend.position = "bottom") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_stepsn(colours=c("purple4", "darkmagenta", head(rev(pals::turbo(6)),5), "blue"), breaks=c(10,20, 30, 40, 50, 60, 70), limits=c(0,100)) + labs(caption="From vacciCation.org") + labs(fill = "% Fully\nVaccinated") + ggtitle(paste0("Vaccination rate for those age 12-17\n(data from ",last_observation, ")" )))
+
+time_data2_under_12 <- time_data2
+time_data2_under_12$Percentage <- 0
+time_data2_under_12 <- subset(time_data2_under_12, Type=="FullyVaccinated" & !duplicated(FIPS))
+print(usmap::plot_usmap(data=time_data2_under_12, values="Percentage", color=NA) + theme(legend.position = "none") + theme(legend.position = "bottom") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_stepsn(colours=c("purple4", "darkmagenta", head(rev(pals::turbo(6)),5), "blue"), breaks=c(10,20, 30, 40, 50, 60, 70), limits=c(0,100)) + labs(caption="From vacciCation.org") + labs(fill = "% Fully\nVaccinated") + ggtitle(paste0("Vaccination rate for those younger than 12" )))
+
+
+
+```
+
+```{r, echo=FALSE, eval=FALSE, dpi=72, out.width="800px"}
+time_data <- params$all_predictions
+time_data$PercentFullyVaccinated <- as.numeric(time_data$PercentFullyVaccinated)
+time_data$PercentFullyVaccinated[time_data$PercentFullyVaccinated>100] <- 100 #lucky counties
+time_data$ReportDate <- as.Date(time_data$ReportDate)
+time_data$fips <- time_data$FIPS
+
+# print(usmap::plot_usmap(data=subset(time_data, Type=="Under 65 (potential)" & ReportDate=="2021-07-04"), values="PercentFullyVaccinated", color=NA) + theme(legend.position = "none") + theme(legend.position = "right") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_gradientn(colours=rev(pals::turbo(1001)), limits=c(0, 100)) + labs(caption="From vacciCation.org") + labs(fill = "Predicted\n% Fully\nVaccinated") + ggtitle(paste0("July 4, 2021 Predicted Vaccination (under 65)" )))
+
+print(usmap::plot_usmap(data=subset(time_data, Type=="All Ages (potential)" & ReportDate=="2021-08-01"), values="PercentFullyVaccinated", color=NA) + theme(legend.position = "none") + theme(legend.position = "bottom") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_stepsn(colours=c(head(rev(pals::turbo(6)),5), "blue"), breaks=c( 30, 40, 50, 60, 70), limits=c(0,100)) + labs(caption="From vacciCation.org") + labs(fill = "Predicted % Fully\nVaccinated (all ages)") + ggtitle(paste0("Rough prediction of vaccination by August 1, 2021" )))
+
+# print(usmap::plot_usmap(data=subset(time_data, Type=="Under 65 (potential)" & ReportDate=="2021-08-01"), values="PercentFullyVaccinated", color=NA) + theme(legend.position = "none") + theme(legend.position = "right") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_gradientn(colours=rev(pals::turbo(1001)), limits=c(0, 100)) + labs(caption="From vacciCation.org") + labs(fill = "Predicted\n% Fully\nVaccinated") + ggtitle(paste0("August 1, 2021 Predicted Vaccination (under 65)" )))
+
+
+print(usmap::plot_usmap(data=subset(time_data, Type=="All Ages (potential)" & ReportDate=="2021-09-06"), values="PercentFullyVaccinated", color=NA) + theme(legend.position = "none") + theme(legend.position = "bottom") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_stepsn(colours=c(head(rev(pals::turbo(6)),5), "blue"), breaks=c( 30, 40, 50, 60, 70), limits=c(0,100)) + labs(caption="From vacciCation.org") + labs(fill = "Predicted % Fully\nVaccinated (all ages)") + ggtitle(paste0("Rough prediction of vaccination by Labor Day (Sep 6)" )))
+
+# print(usmap::plot_usmap(data=subset(time_data, Type=="Under 65 (potential)" & ReportDate=="2021-09-06"), values="PercentFullyVaccinated", color=NA) + theme(legend.position = "none") + theme(legend.position = "right") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_gradientn(colours=rev(pals::turbo(5)), limits=c(0, 100)) + labs(caption="From vacciCation.org") + labs(fill = "Predicted\n% Fully\nVaccinated") + ggtitle(paste0("Labor Day (Sep 6) Predicted Vaccination (under 65)" )))
+
+```
+
+### About
+
+This uses information from the [US Centers for Disease Control](https://www.cdc.gov/), [US Health and Human Services](https://www.hhs.gov/), and the [US Census Bureau](https://www.census.gov/), as well as [GeoNames](https://www.geonames.org/) and the [US Bureau of Indian Affairs](https://www.bia.gov/). Information is based on the **county** where a tourism site is located, not the site itself. For example, a local amusement park may practice covid safety protocols perfectly aligned with CDC guidance, but may be in a county where people are unable to get the vaccine -- exposure risk might be low within the park but higher in the hotels, restuarants, and stores near the park. 
+
+This site was last updated `r format(Sys.time(), "%a, %b %d, %Y")`, using CDC report data from `r format(as.Date(params$date_community, "%Y%m%d"), "%a, %b %d, %Y")`.
+
+Specifically:
+
+* [COVID-19 Community Profile Report](https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9): Information on community transmission, cases, and vaccination from the Data Strategy and Execution Workgroup, under the White House COVID-19 Team.
+* [Vaccine Hesitancy](https://aspe.hhs.gov/pdf-report/vaccine-hesitancy): Information from the American Community Survey of vaccine hesistancy, which uses survey data and a model to predict hesitancy by county.
+* [GeoNames](https://www.geonames.org/): List of locations; filtered for national parks, amusement parks, zoos, and museums.
+
+It is computed in R using the packages targets, httr, readxl, tidyverse, Hmisc, plyr, stringr, stringr, rmarkdown, tarchetypes, and DT.
+
+vacciCation is a portmanteau of "vaccination" and "vacation", since this is a site that may help influence where people who are choosing to travel recreationally go in light of vaccination rates and other data. Please follow [CDC guidance](https://www.cdc.gov/coronavirus/2019-ncov/index.html) before considering travel and while traveling.
+
+Compiled tables used for the website:
+
+* [County Information](data/aggregation_by_county.csv): Information by county (mostly from the [community profile report](https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9) and [vaccing hesitancy](https://aspe.hhs.gov/pdf-report/vaccine-hesitancy) data).
+* [Site Info](data/site_info.csv): Info on the locations -- a subset of columns from this are used for the main page.
+
+Source code used to compile the data and make the pages: https://github.com/bomeara/vaccication. 
+
+Most fields are simple compilations of published data. The only exceptions are:
+
+* Vaccination rates of those under 65 are not directly provided, but counts and rates of all people and those 65 and older are provided, so the calculation is basic.
+* In Texas and in isolated counties elsewhere, vaccination rates are not reported by county but for the state as a whole. In these cases, I used the state rate for each county. A better approach could be to model this information based on patterns in other states (rural versus urban differences, for example), but it is better to let experts in this data do this. The two compiled datasets above include a column indicating if the state or county information was used for vaccination rates.
+* For a tiny number of counties, their vaccination rate is nominally 100 or better (likely reflecting issues with different sources of data for population of the county and the number of people vaccinated). To make sorting easier, these have been changed to 99 in the displayed table.
+
+Community transmission levels come from the [community profile report](https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9). They are based on "1) total number of new cases per 100,000 persons within the last 7 days and 2) percentage of positive diagnostic and screening nucleic acid amplification tests (NAAT) during the last 7 days). If the two indicators suggest different transmission levels, the higher level is selected."
+
+I am following the color scheme for High / Substantial / Moderate / Low from the community profile report (red, orange, yellow, blue). For the numerical measures, I am using a red to blue scheme (they use a rainbow scheme, but that can be hard to understand: is purple bad?).
+
+Categories:
+
+* **Low Transmission**: control is achieved largely through individual prevention behaviors and the public health response to identify and isolate cases or clusters; counties with fewer than 10 cumulative cases per 100,000 population in the past 7 days, and a cumulative NAAT percent test positivity result below 5% in the past 7 days
+* **Moderate Transmission**: adherence to individual and selected community level prevention strategies are needed; counties with 10–49 cumulative cases per 100,000 population or a cumulative NAAT test positivity result between 5.0–7.9% in the past 7 days
+* **Substantial Transmission**: everyday activities should be limited to reduce spread and protect the health care system; counties with 50–99 cumulative cases per 100,000 population or a cumulative NAAT test positivity result between 8.0–9.9% in the past 7 days
+* **High Transmission**: significant measures are needed to limit contact between persons, with priority given to maintaining essential community activities and services (e.g., health care, transportation, food and agriculture, schools); counties with cumulative cases 100+ per 100,000 population or a cumulative NAAT test positivity result 10%+ in the past 7 days.
+
+There are data on ICU beds filled per county, but I chose to show state data: while ICU capacity in Southern California might not be relevant to Northern California, a rural county's capacity is probably better reflected by regional capacity than capacity in that one county, and so showing at the state level might be more appropriate. 
+
+**Caveats**: Though I study biology, I am not an expert in covid -- I am doing this as someone ok at programming, not as academic research. My main motivation is to help make the data more accessible for others who are planning to responsibly travel (do what the CDC recommends!) and want to go to areas where their family members will not increase the local health care burden nor be exposed to covid at risk levels higher than what they are comfortable with, especially if they are traveling with people who are unprotected by vaccines. A secondary motivation was to help incentivize vaccine adoption by places through highlighting those doing a better than average job getting their populations vaccinated. 
+
+For predictions, the exponential smothing state space model is used from the R package fable (other models like ARIMA would fail for some counties). Predictions are always uncertain, especially here, where the vaccination data can be sparse and the future behavior depends on things like vaccine availability, incentives, and other factors. However, I think it's useful to show counties' current trajectories -- at the time this was being added, there were noticeable slowdowns in the pace of vaccinations (while I was finishing this up, the *New York Times* published an [article](https://www.nytimes.com/interactive/2021/06/03/us/virus-vaccine-states.html) on vaccination rates not hitting targets -- I would trust their analysis far more than the simple models used here). 

@@ -1,0 +1,166 @@
+---
+output: 
+  html_document:
+    theme: null
+    includes:
+      in_header: GA_Script.html
+params:
+  county_name: "nothing"
+  state_name: "nothing"
+  county_table: "nothing"
+  percent_population_at_lower_transmission: "0"
+  percent_population_at_higher_vaccination: "0"
+  county_state_unique: "nothing"
+  focal_fips: "nothing"
+  aggregation_by_county: "nothing"
+  update_date: "nothing"
+  data_date: "nothing"
+  county_full_history: "nothing"
+  state_level_only: "nothing"
+  time_series: "nothing"
+title: "`r paste0('vacciCation for ', params$county_name, ifelse(grepl('Borough', params$county_name), '', ' County'),' ', params$state_name)`"
+
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dev="png")
+save(list=ls(), file="~/Downloads/county.rda")
+max_vax_12_to_17 <- max(as.numeric(subset(params$time_series, Type=="FullyVaccinated" & Group=="12-17")$Percent), na.rm=TRUE)
+mask_min <- 100-as.numeric(params$county_table$'Fully Vaccinated (all)'[1])
+mask_max <- 100-as.numeric(params$county_table$'Fully Vaccinated (<65)'[1])
+```
+
+
+In `r paste0(params$county_name, ifelse(grepl('Borough', params$county_name), '', ' County'),', ', params$state_name)`, there is currently **`r tolower(params$county_table$'Community Transmission'[1])`** community transmission of covid. This means that `r switch(params$county_table$'Community Transmission'[1], "High"="this county is in the *worst* possible category: significant measures are needed to limit contact between persons, with priority given to maintaining essential community activities and services (e.g., health care, transportation, food and agriculture, schools)", "Substantial"="everyday activities should be limited to reduce spread and protect the health care system", "Moderate"="adherence to individual and selected community level prevention strategies are needed", "Low"="control is achieved largely through individual prevention behaviors and the public health response to identify and isolate cases or clusters")`. Based on the "area of concern" criterion, which looks at trends, this county `r switch(params$county_table$'Area of Concern'[1], "LowBurden"="has minimal covid disease activity", "ModerateBurden"="has moderate covid disease activity", "EmergingHotspot"="is an emerging hotspot, with a **high likelihood of becoming a hotspot in the next 1-7 days**", "Hotspot"="is a **hotspot**, an area where covid disease activity is a high burden", "SustainedHotspot"="is a **sustained hotspot**, an area that has had a high sustained covid case burden and where there may be higher risk for experiencing healthcare resource limitations", "HighBurdenResolving"="was recently a hotspot but is now improving", "ModerateBurdenResolving"="has a moderate level of covid disease burden, but which is improving")`. For other locations, go to [vaccication.org](http://vaccication.org). See the original data [here](https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9).
+
+
+Overall, `r params$county_table$'Fully Vaccinated (all)'[1]`% of the people in this `r ifelse(params$state_level_only, "state (information is not broken down by county in this part of the US)", "county")` are vaccinated so far, including `r params$county_table$'Fully Vaccinated (<65)'[1]`% of those under 65. `r params$county_table$'Vaccine Hesitant'[1]`% of the people in this county are resistant to getting a vaccine according to the most recent available [CDC calculations](https://data.cdc.gov/stories/s/Vaccine-Hesitancy-for-COVID-19/cnd2-a6zw) (these may lag current opinions by a few weeks). 
+
+Based on the level of spread and vaccination rate, `r switch(params$county_table$'Community Transmission'[1], "High"="**everyone, including those fully vaccinated, should be wearing masks indoors**", "Substantial"="**everyone, including those fully vaccinated, should be wearing masks indoors**", "Moderate"=paste0("between **", mask_min, "% and ", mask_max, "% of the people you encounter are not fully vaccinated and should be wearing masks indoors**"), "Low"=paste0("between **", mask_min, "% and ", mask_max, "% of the people you encounter are not fully vaccinated and should be wearing masks indoors**"))`.
+
+
+In K-12 schools, the [CDC](https://www.cdc.gov/coronavirus/2019-ncov/community/schools-childcare/k-12-guidance.html) and the [American Academy of Pediatrics](https://services.aap.org/en/pages/2019-novel-coronavirus-covid-19-infections/clinical-guidance/covid-19-planning-considerations-return-to-in-person-education-in-schools/) both recommend masks for everyone indoors in a school, regardless of their vaccination status. Currently, no student younger than 12 is vaccinated`r ifelse(is.finite(max_vax_12_to_17), paste0("; ",round(max_vax_12_to_17,1),"% of the students age 12-17 are fully vaccinated."),".")`
+
+```{r, echo=FALSE, eval=FALSE, dpi=72, out.width="600px"}
+#On the map below, areas in purple have higher proportions of fully vaccinated people than `r paste0(params$county_name, ifelse(grepl('Borough', params$county_name), '', ' County'),', ', params$state_name)`. If you are in the `r round(params$percent_population_at_higher_vaccination,0)`% of people in the US who live in a purple area, visiting this county likely would expose your family to more unvaccinated people than you have at home (in addition to the increased exposure risk that comes from travel). Areas in gray have equal vaccination rates, areas in orange have worse vaccination rates.
+
+county_state_unique <- params$county_state_unique
+
+focal_fips <- params$focal_fips
+aggregation_by_county <- params$aggregation_by_county
+focal_vaccination <- aggregation_by_county$Percent_Fully_Vaccinated[which(aggregation_by_county$FIPS==focal_fips)]
+
+my_data <- data.frame(fips=aggregation_by_county$FIPS, Percent_fully_vaccinated = aggregation_by_county$Percent_Fully_Vaccinated)
+#my_data$bigger[which(aggregation_by_county$Percent_Fully_Vaccinated>(focal_vaccination))] <- 1
+#my_data$bigger[which(my_data$fips==focal_fips)] <- 0.5
+
+print(usmap::plot_usmap(data=my_data, values="Percent_fully_vaccinated", color=NA) + scale_fill_stepsn(colours=c("orange", "gray", "purple"), breaks=c(focal_vaccination-0.5, focal_vaccination+0.5), limits=c(0,100)) + theme(legend.position = "none") + ggtitle(paste0("Vaccination rates compared to ", params$county_name, ifelse(grepl('Borough', params$county_name), '', ' County'),', ', params$state_name, "\n(purple = better, gray = same, orange = worse)"))+ theme(
+plot.title = element_text(size=14, face="bold", hjust=0.5)) + labs(caption="From vacciCation.org"))
+```
+
+This plot shows the growth of the vaccinated population here over time. 
+
+```{r, echo=FALSE, eval=TRUE, dpi=72, out.width="600px", warning=FALSE}
+time_data <- params$time_series
+time_data$Percent <- as.numeric(time_data$Percent)
+time_data$Percent[time_data$Percent>100] <- 100 #lucky counties
+time_data <- time_data[order(time_data$Date),]
+time_data$Date <- as.Date(time_data$Date)
+# time_data$ReportDate <- as.Date(time_data$ReportDate, "%Y%m%d")
+# time_data$`Under 65` <- 100*time_data$Proportion_Fully_Vaccinated_Under_65
+# time_data$`All Ages` <- 100*time_data$`People who are fully vaccinated as % of total population`
+# df <- time_data %>%
+#   gather(key = "Type", value = "PercentFullyVaccinated", -ReportDate)
+time_data_full <- subset(time_data, Type=="FullyVaccinated")
+g <- ggplot(time_data_full, aes(x = Date, y = Percent)) + 
+  geom_line(aes(color = Group)) + 
+  #geom_line() + 
+  scale_color_manual(values = c("red", "purple", "blue", "black")) +
+  ylim(0,100) +  ylab("Percent of population fully vaccinated") + xlab("Date of report") + ggtitle(paste0("Fully vaccinated in ", params$county_name, ifelse(grepl('Borough', params$county_name), '', ' County'),', ', params$state_name, ifelse(params$state_level_only, "\n(based on state average only)", ""))) + theme_light() + theme(
+plot.title = element_text(size=14, face="bold", hjust=0.5)) + labs(caption="From vacciCation.org") 
+print(g)
+```
+
+This plot shows the percentage of people in each group who start to be vaccinated each week.
+
+```{r, echo=FALSE, eval=TRUE, dpi=72, out.width="600px", warning=FALSE}
+time_data <- params$time_series
+time_data$Percent <- as.numeric(time_data$Percent)
+time_data$Percent[time_data$Percent>100] <- 100 #lucky counties
+time_data <- time_data[order(time_data$Date),]
+time_data$Date <- as.Date(time_data$Date)
+# time_data$ReportDate <- as.Date(time_data$ReportDate, "%Y%m%d")
+# time_data$`Under 65` <- 100*time_data$Proportion_Fully_Vaccinated_Under_65
+# time_data$`All Ages` <- 100*time_data$`People who are fully vaccinated as % of total population`
+# df <- time_data %>%
+#   gather(key = "Type", value = "PercentFullyVaccinated", -ReportDate)
+time_data_intiating <- subset(time_data, Type=="InitiatingVaccination")
+
+g <- ggplot(time_data_intiating, aes(x = Date, y = Percent)) + 
+  geom_line(aes(color = Group)) + 
+  #geom_line() + 
+  scale_color_manual(values = c("red", "purple", "blue")) +
+  ylab("Percent initiating vaccination that week") + xlab("Date of report") + ggtitle(paste0("Starting vaccinations in ", params$county_name, ifelse(grepl('Borough', params$county_name), '', ' County'),', ', params$state_name, ifelse(params$state_level_only, "\n(based on state average only)", ""))) + theme_light() + theme(
+plot.title = element_text(size=14, face="bold", hjust=0.5)) + labs(caption="From vacciCation.org")
+print(g)
+```
+
+```{r, echo=FALSE}
+#knitr::kable(params$time_series)
+#save(list=ls(), file=paste0(params$focal_fips, "_time_series.rda"))
+```
+
+Currently, `r params$county_table$'State ICU Beds Filled'[1]`% of hospital ICU beds are filled in `r state.name[which(state.abb==params$state_name)]`; in this county, `r ifelse((params$county_table$'County ICU Beds Filled'[1])=="NA", " no county hospitals report ICU bed availability", paste0(params$county_table$'County ICU Beds Filled'[1] ,"% ICU beds are filled"))`. People in the county may have access to ICU beds in the larger region.
+
+You can get more information on this county, including recommendations of what is safe to do, from [this county's page](`r paste0('https://www.nytimes.com/interactive/2021/us/',tolower(gsub(" ", "-",params$county_name)), '-', tolower(gsub(" ", "-",state.name[which(state.abb==params$state_name)])), '-covid-cases.html')`) on *The New York Times* website.
+
+This page was created on `r params$update_date` using released [vaccination data](https://beta.healthdata.gov/Health/COVID-19-Community-Profile-Report/gqxm-d9w9) from `r params$data_date`.
+
+
+Some populated places or attactions here in this county: 
+
+`r paste0(paste0("* ", params$county_table$Location, " (", params$county_table$Type, ")"), collapse="\n")`.
+
+
+```{r, echo=FALSE, eval=FALSE}
+library(pals)
+library(DescTools)
+options(DT.warn.size=FALSE)
+pretty_output <- function(output_table) {
+	output_simplified <- output_table%>%select(Location, Type)
+	DT::datatable(output_simplified,rownames=FALSE, filter="top")
+}
+
+pretty_output(params$county_table)
+```
+
+```{r, echo=FALSE, eval=FALSE}
+
+#time_data <- params$county_full_history
+time_data <- subset(cdc_all_reports, FIPS==focal_fips)
+time_data$ReportDate <- as.Date(time_data$ReportDate, "%Y%m%d")
+time_data$`Under 65` <- 100*time_data$Proportion_Fully_Vaccinated_Under_65
+time_data$`All Ages` <- 100*time_data$`People who are fully vaccinated as % of total population`
+ts <- as_tsibble(time_data, index=ReportDate)
+county_forecast <- ts  %>% tsibble::fill_gaps() %>% imputeTS::na_interpolation() %>% model(
+    ets_all = ETS(`All Ages`)
+)  %>%  forecast( h = "1 year") 
+
+months_to_70 <- Inf
+try(months_to_70 <- as.numeric(min(county_forecast[which(county_forecast$.mean>=70),]$ReportDate) - Sys.Date())/30, silent=TRUE)
+print(months_to_70)
+plot(county_forecast$ReportDate, county_forecast$.mean, type="l", xlim=range(c(ts$ReportDate, county_forecast$ReportDate), na.rm=TRUE), ylim=range(c(ts$`All Ages`, county_forecast$.mean), na.rm=TRUE))
+lines(ts$ReportDate, ts$`All Ages`, col="red")
+county_forecast[county_forecast$ReportDate=="2021-07-01",]
+
+library(leaflet)
+m <- leaflet() %>% addTiles()
+county_table_latlong <- subset(params$county_table, !is.na(params$county_table$Latitude))
+for (i in sequence(nrow(county_table_latlong))) {
+	m <- m%>%addMarkers(lng=county_table_latlong$Longitude[i], lat=county_table_latlong$Latitude[i], popup=county_table_latlong$Location[i])	
+}
+if(nrow(county_table_latlong)>5) {
+	m	
+}
+
+```

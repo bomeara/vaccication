@@ -1,0 +1,34 @@
+---
+title: vacciCation
+output: 
+  html_document:
+    includes:
+      in_header: GA_Script.html
+params:
+  all_predictions: "unknown"
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+library(pals)
+library(DescTools)
+options(DT.warn.size=FALSE)
+```
+
+
+This is an animation of future vaccination (again, with very rough estimates).
+```{r, echo=FALSE, eval=TRUE, messages=FALSE, dpi=72, out.width="800px"}
+time_data <- params$all_predictions
+time_data$PercentFullyVaccinated <- as.numeric(time_data$PercentFullyVaccinated)
+time_data$PercentFullyVaccinated[time_data$PercentFullyVaccinated>100] <- 100 #lucky counties
+time_data$ReportDate <- as.Date(time_data$ReportDate)
+time_data$fips <- time_data$FIPS
+
+time_data_for_animation <- time_data[grepl("All Ages", time_data$Type),]
+time_data_for_animation <- time_data_for_animation[weekdays(time_data_for_animation$ReportDate)=="Monday",]
+time_data_for_animation <- time_data_for_animation[time_data_for_animation$ReportDate < Sys.Date()+90,]
+
+animap <- usmap::plot_usmap(data=time_data_for_animation, values="PercentFullyVaccinated", color=NA) + theme(legend.position = "none") + theme(legend.position = "bottom") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_stepsn(colours=c(head(rev(pals::turbo(6)),5), "blue"), breaks=c( 30, 40, 50, 60, 70), limits=c(0,100)) + labs(caption="From vacciCation.org") + labs(fill = "Predicted % Fully\nVaccinated (all ages)") +   labs(title = '{closest_state}') + transition_states(ReportDate, transition_length = 2, state_length = 1)
+print(animate(animap, height=500, width=800, end_pause=30))
+anim_save(filename="vaccination.gif")
+```
+
