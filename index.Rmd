@@ -33,7 +33,8 @@ Start typing above each column to filter for all text matching that (for example
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 pretty_output <- function(output_table) {
-	output_table$'County, State' <- paste0('<a href="https://vaccication.org/counties/', gsub(" ", "_", gsub(",", "", output_table$'County, State')), '.html">', output_table$'County, State', "</a>")
+	# output_table$'County, State' <- paste0('<a href="https://vaccication.org/counties/', gsub(" ", "_", gsub(",", "", output_table$'County, State')), '.html">', output_table$'County, State', "</a>")
+
   output_table$'Community Transmission' <- gsub("High", "4: High", output_table$'Community Transmission')
   output_table$'Community Transmission' <- gsub("Substantial", "3: Substantial", output_table$'Community Transmission')
   output_table$'Community Transmission' <- gsub("Moderate", "2: Moderate", output_table$'Community Transmission')
