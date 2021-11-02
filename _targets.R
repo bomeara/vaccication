@@ -20,6 +20,9 @@ tar_option_set(packages = "dplyr")
 
 # End this file with a list of target objects.
 list(
+  tar_invalidate(cdc_weekly_metadata),
+  tar_invalidate(cdc_all_metadata),
+  tar_invalidate(hesitancy_by_county),
   tar_target(hesitancy_by_county, GetHesitancyByCounty()),
   tar_target(cdc_weekly_metadata, GetCommunityTransmissionReportLastDate()),
   tar_target(cdc_weekly, GetCommunityTransmissionReport(report_url=cdc_weekly_metadata$report_url)),
