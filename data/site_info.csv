@@ -1392,7 +1392,7 @@
 "Socorro Mission Number 1 Colonia","Populated Place","El Paso","TX","High",66,9.65,88,99,70,6.08,839238,TRUE,31.63622,-106.29054,"SustainedHotspot",48141
 "United States Army Air Defense Artillery Museum","Museum","El Paso","TX","High",66,9.65,88,99,70,6.08,839238,TRUE,31.79511,-106.42637,"SustainedHotspot",48141
 "Wilderness Park Museum","Museum","El Paso","TX","High",66,9.65,88,99,70,6.08,839238,TRUE,31.90566,-106.45415,"SustainedHotspot",48141
-"Española","Populated Place","Rio Arriba","NM","High",65,6.1,92,83,70,3.14,38921,TRUE,35.99113,-106.08058,"SustainedHotspot",35039
+"Espa<U+00F1>ola","Populated Place","Rio Arriba","NM","High",65,6.1,92,83,70,3.14,38921,TRUE,35.99113,-106.08058,"SustainedHotspot",35039
 "Florence Hawley Ellis Museum of Anthropology","Museum","Rio Arriba","NM","High",65,6.1,92,83,70,3.14,38921,TRUE,36.33168,-106.47309,"SustainedHotspot",35039
 "Ghost Ranch Living Museum","Museum","Rio Arriba","NM","High",65,6.1,92,83,70,3.14,38921,TRUE,36.32502,-106.50531,"SustainedHotspot",35039
 "Jicarilla Museum","Museum","Rio Arriba","NM","High",65,6.1,92,83,70,3.14,38921,TRUE,36.93362,-106.99893,"SustainedHotspot",35039
@@ -2301,7 +2301,7 @@
 "J Paul Getty Museum","Museum","Los Angeles","CA","Substantial",61,6.02,76,73,64,2.91,10039107,TRUE,34.04501,-118.56508,"Hotspot",6037
 "Japanese American National Museum","Museum","Los Angeles","CA","Substantial",61,6.02,76,73,64,2.91,10039107,TRUE,34.04945,-118.23879,"Hotspot",6037
 "LA County Museum of Art","Museum","Los Angeles","CA","Substantial",61,6.02,76,73,64,2.91,10039107,TRUE,34.0626,-118.358,"Hotspot",6037
-"La Cañada Flintridge","Populated Place","Los Angeles","CA","Substantial",61,6.02,76,73,64,2.91,10039107,TRUE,34.19917,-118.18785,"Hotspot",6037
+"La Ca<U+00F1>ada Flintridge","Populated Place","Los Angeles","CA","Substantial",61,6.02,76,73,64,2.91,10039107,TRUE,34.19917,-118.18785,"Hotspot",6037
 "La Crescenta-Montrose","Populated Place","Los Angeles","CA","Substantial",61,6.02,76,73,64,2.91,10039107,TRUE,34.23216,-118.23529,"Hotspot",6037
 "La Habra Heights","Populated Place","Los Angeles","CA","Substantial",61,6.02,76,73,64,2.91,10039107,TRUE,33.96085,-117.95062,"Hotspot",6037
 "La Mirada","Populated Place","Los Angeles","CA","Substantial",61,6.02,76,73,64,2.91,10039107,TRUE,33.91724,-118.01201,"Hotspot",6037
@@ -3163,7 +3163,7 @@
 "Conway","Populated Place","Orange","FL","Moderate",59,12.38,75,88,63,7.97,1393452,TRUE,28.50278,-81.33062,"ModerateBurden",12095
 "Cornell Fine Arts Museum","Museum","Orange","FL","Moderate",59,12.38,75,88,63,7.97,1393452,TRUE,28.5922,-81.3462,"ModerateBurden",12095
 "Disney's Blizzard Beach Water Park","Amusement Park","Orange","FL","Moderate",59,12.38,75,88,63,7.97,1393452,TRUE,28.35192,-81.57501,"ModerateBurden",12095
-"Disney’s Animal Kingdom","Amusement Park","Orange","FL","Moderate",59,12.38,75,88,63,7.97,1393452,TRUE,28.3578,-81.5905,"ModerateBurden",12095
+"Disney<U+2019>s Animal Kingdom","Amusement Park","Orange","FL","Moderate",59,12.38,75,88,63,7.97,1393452,TRUE,28.3578,-81.5905,"ModerateBurden",12095
 "Doctor Phillips","Populated Place","Orange","FL","Moderate",59,12.38,75,88,63,7.97,1393452,TRUE,28.44945,-81.49229,"ModerateBurden",12095
 "Epcot Center, Walt Disney World","Amusement Park","Orange","FL","Moderate",59,12.38,75,88,63,7.97,1393452,TRUE,28.3719,-81.54943,"ModerateBurden",12095
 "Fairview Shores","Populated Place","Orange","FL","Moderate",59,12.38,75,88,63,7.97,1393452,TRUE,28.59111,-81.39424,"ModerateBurden",12095
@@ -4552,14 +4552,14 @@
 "Hawaii National Park Post Office","National Park","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,19.43336,-155.27376,"EmergingHotspot",15001
 "Hawaii Nature Center","Museum","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.8831,-156.53651,"ModerateBurden",15009
 "Hawaiian Paradise Park","Populated Place","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,19.59333,-154.97306,"EmergingHotspot",15001
-"Hawai‘i Volcanoes National Park","National Park","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,19.41938,-155.2885,"EmergingHotspot",15001
+"Hawai<U+2018>i Volcanoes National Park","National Park","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,19.41938,-155.2885,"EmergingHotspot",15001
 "Hickam Field","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.33967,-157.96018,"Hotspot",15003
 "Hilo","Populated Place","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,19.72991,-155.09073,"EmergingHotspot",15001
 "Honolulu","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.30694,-157.85833,"Hotspot",15003
 "Honolulu Museum of Art","Museum","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.30397,-157.84869,"Hotspot",15003
-"Hālawa","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.37944,-157.92167,"Hotspot",15003
-"Hālawa Heights","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.37848,-157.91388,"Hotspot",15003
-"Hōlualoa","Populated Place","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,19.61979,-155.94831,"EmergingHotspot",15001
+"H<U+0101>lawa","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.37944,-157.92167,"Hotspot",15003
+"H<U+0101>lawa Heights","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.37848,-157.91388,"Hotspot",15003
+"H<U+014D>lualoa","Populated Place","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,19.61979,-155.94831,"EmergingHotspot",15001
 "Jaggar Museum","Museum","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,19.41988,-155.28786,"EmergingHotspot",15001
 "Kahului","Populated Place","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.88953,-156.47432,"ModerateBurden",15009
 "Kailua","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.40241,-157.74054,"Hotspot",15003
@@ -4567,17 +4567,17 @@
 "Kalaoa","Populated Place","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,19.72861,-155.98167,"EmergingHotspot",15001
 "Kamuela Museum","Museum","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,20.02944,-155.7025,"EmergingHotspot",15001
 "Kaneohe","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.39994,-157.79895,"Hotspot",15003
-"Kapa‘a","Populated Place","Kauai","HI","High",54,6.1,71,68,61,3.26,72293,FALSE,22.07521,-159.31895,"SustainedHotspot",15007
+"Kapa<U+2018>a","Populated Place","Kauai","HI","High",54,6.1,71,68,61,3.26,72293,FALSE,22.07521,-159.31895,"SustainedHotspot",15007
 "Kapolei","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.33555,-158.0582,"Hotspot",15003
 "Kauai Museum","Museum","Kauai","HI","High",54,6.1,71,68,61,3.26,72293,FALSE,21.97484,-159.36837,"SustainedHotspot",15007
 "Kula","Populated Place","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.79094,-156.32695,"ModerateBurden",15009
-"Kīhei","Populated Place","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.76462,-156.44578,"ModerateBurden",15009
+"K<U+012B>hei","Populated Place","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.76462,-156.44578,"ModerateBurden",15009
 "Lahaina","Populated Place","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.87429,-156.67663,"ModerateBurden",15009
 "Lahaina Whaling Museum","Museum","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.87944,-156.68333,"ModerateBurden",15009
 "Lihue","Populated Place","Kauai","HI","High",54,6.1,71,68,61,3.26,72293,FALSE,21.98121,-159.3721,"SustainedHotspot",15007
 "Lucoral Museum","Museum","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.28,-157.82639,"Hotspot",15003
 "Lyman House Memorial Museum","Museum","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,19.72203,-155.09062,"EmergingHotspot",15001
-"Lā‘ie","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.64547,-157.9225,"Hotspot",15003
+"L<U+0101><U+2018>ie","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.64547,-157.9225,"Hotspot",15003
 "Makakilo","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.35237,-158.08655,"Hotspot",15003
 "Makakilo City","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.34694,-158.08583,"Hotspot",15003
 "Makawao","Populated Place","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.85694,-156.31306,"ModerateBurden",15009
@@ -4585,10 +4585,10 @@
 "Maui Ocean Center","Museum","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.79276,-156.51225,"ModerateBurden",15009
 "Mililani Town","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.4504,-158.01503,"Hotspot",15003
 "Mission Houses Museum","Museum","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.30722,-157.85972,"Hotspot",15003
-"Mākaha","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.46627,-158.21037,"Hotspot",15003
-"Mā‘ili","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.41629,-158.17531,"Hotspot",15003
+"M<U+0101>kaha","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.46627,-158.21037,"Hotspot",15003
+"M<U+0101><U+2018>ili","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.41629,-158.17531,"Hotspot",15003
 "Napili-Honokowai","Populated Place","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.97533,-156.67826,"ModerateBurden",15009
-"Nānākuli","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.39362,-158.15429,"Hotspot",15003
+"N<U+0101>n<U+0101>kuli","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.39362,-158.15429,"Hotspot",15003
 "Ocean Pointe","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.31066,-158.03638,"Hotspot",15003
 "Pacific Aerospace Museum","Museum","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.33472,-157.92278,"Hotspot",15003
 "Pacific Tsunami Museum","Museum","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,19.72604,-155.08657,"EmergingHotspot",15001
@@ -4603,10 +4603,10 @@
 "United States Army Museum of Hawaii","Museum","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.28167,-157.83611,"Hotspot",15003
 "University of Hawaii Art Gallery","Museum","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.29943,-157.81763,"Hotspot",15003
 "Village Park","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.39806,-158.03028,"Hotspot",15003
-"Wahiawā","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.50279,-158.02464,"Hotspot",15003
+"Wahiaw<U+0101>","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.50279,-158.02464,"Hotspot",15003
 "Waianae","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.43785,-158.18555,"Hotspot",15003
 "Waihee-Waiehu","Populated Place","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.93022,-156.50458,"ModerateBurden",15009
-"Waikīkī Aquarium","Museum","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.26581,-157.82122,"Hotspot",15003
+"Waik<U+012B>k<U+012B> Aquarium","Museum","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.26581,-157.82122,"Hotspot",15003
 "Wailea","Populated Place","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.68973,-156.4419,"ModerateBurden",15009
 "Wailua Homesteads","Populated Place","Kauai","HI","High",54,6.1,71,68,61,3.26,72293,FALSE,22.07244,-159.37677,"SustainedHotspot",15007
 "Wailuku","Populated Place","Maui","HI","Substantial",54,6.1,71,100,61,3.26,167417,FALSE,20.89133,-156.50604,"ModerateBurden",15009
@@ -4615,12 +4615,12 @@
 "Waimea","Populated Place","Hawaii","HI","High",54,6.38,71,73,61,3.34,201513,FALSE,20.02323,-155.67288,"EmergingHotspot",15001
 "Waipahu","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.38667,-158.00917,"Hotspot",15003
 "Waipio","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.41823,-157.99906,"Hotspot",15003
-"Waipi‘o Acres","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.46485,-158.01331,"Hotspot",15003
-"‘Aiea","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.38222,-157.93361,"Hotspot",15003
-"‘Ewa Beach","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.31556,-158.00722,"Hotspot",15003
-"‘Ewa Gentry","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.33999,-158.03039,"Hotspot",15003
-"‘Ewa Villages","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.34127,-158.0397,"Hotspot",15003
-"‘Āhuimanu","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.44472,-157.83778,"Hotspot",15003
+"Waipi<U+2018>o Acres","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.46485,-158.01331,"Hotspot",15003
+"<U+2018>Aiea","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.38222,-157.93361,"Hotspot",15003
+"<U+2018>Ewa Beach","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.31556,-158.00722,"Hotspot",15003
+"<U+2018>Ewa Gentry","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.33999,-158.03039,"Hotspot",15003
+"<U+2018>Ewa Villages","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.34127,-158.0397,"Hotspot",15003
+"<U+2018><U+0100>huimanu","Populated Place","Honolulu","HI","Substantial",54,5.07,71,67,61,2.75,974563,FALSE,21.44472,-157.83778,"Hotspot",15003
 "Fayetteville","Populated Place","Cumberland","NC","High",54,14.61,80,72,58,11.12,335509,TRUE,35.05266,-78.87836,"SustainedHotspot",37051
 "Fort Bragg","Populated Place","Cumberland","NC","High",54,14.61,80,72,58,11.12,335509,TRUE,35.139,-79.00603,"SustainedHotspot",37051
 "Hope Mills","Populated Place","Cumberland","NC","High",54,14.61,80,72,58,11.12,335509,TRUE,34.97044,-78.94531,"SustainedHotspot",37051
@@ -7035,7 +7035,7 @@
 "Oak Hills","Populated Place","San Bernardino","CA","High",47,7.4,76,70,51,3.61,2180085,TRUE,34.38313,-117.38135,"Hotspot",6071
 "Ontario","Populated Place","San Bernardino","CA","High",47,7.4,76,70,51,3.61,2180085,TRUE,34.06334,-117.65089,"Hotspot",6071
 "Phelan","Populated Place","San Bernardino","CA","High",47,7.4,76,70,51,3.61,2180085,TRUE,34.42611,-117.57228,"Hotspot",6071
-"Piñon Hills","Populated Place","San Bernardino","CA","High",47,7.4,76,70,51,3.61,2180085,TRUE,34.43333,-117.64672,"Hotspot",6071
+"Pi<U+00F1>on Hills","Populated Place","San Bernardino","CA","High",47,7.4,76,70,51,3.61,2180085,TRUE,34.43333,-117.64672,"Hotspot",6071
 "Rancho Cucamonga","Populated Place","San Bernardino","CA","High",47,7.4,76,70,51,3.61,2180085,TRUE,34.1064,-117.59311,"Hotspot",6071
 "Redlands","Populated Place","San Bernardino","CA","High",47,7.4,76,70,51,3.61,2180085,TRUE,34.05557,-117.18254,"Hotspot",6071
 "Rialto","Populated Place","San Bernardino","CA","High",47,7.4,76,70,51,3.61,2180085,TRUE,34.1064,-117.37032,"Hotspot",6071
@@ -7201,7 +7201,7 @@
 "The Neon Museum","Museum","Clark","NV","High",47,11.83,83,84,51,6.24,2266715,TRUE,36.17698,-115.13532,"SustainedHotspot",32003
 "Virgin Valley Heritage Museum","Museum","Clark","NV","High",47,11.83,83,84,51,6.24,2266715,TRUE,36.8042,-114.0688,"SustainedHotspot",32003
 "Wayne Newton's Casa de Shenandoah","Amusement Park","Clark","NV","High",47,11.83,83,84,51,6.24,2266715,TRUE,36.07195,-115.10312,"SustainedHotspot",32003
-"Wet‘n’Wild Las Vegas","Amusement Park","Clark","NV","High",47,11.83,83,84,51,6.24,2266715,TRUE,36.05944,-115.30169,"SustainedHotspot",32003
+"Wet<U+2018>n<U+2019>Wild Las Vegas","Amusement Park","Clark","NV","High",47,11.83,83,84,51,6.24,2266715,TRUE,36.05944,-115.30169,"SustainedHotspot",32003
 "Whitney","Populated Place","Clark","NV","High",47,11.83,83,84,51,6.24,2266715,TRUE,36.09831,-115.0363,"SustainedHotspot",32003
 "Winchester","Populated Place","Clark","NV","High",47,11.83,83,84,51,6.24,2266715,TRUE,36.12997,-115.11889,"SustainedHotspot",32003
 "Clay County","Museum","Clay","MN","High",47,7.62,85,NA,53,4.11,64222,TRUE,46.87791,-96.77751,"SustainedHotspot",27027
@@ -10741,7 +10741,7 @@
 "Augusta","Populated Place","Richmond","GA","Substantial",32,16.04,79,93,35,9.95,202518,TRUE,33.47097,-81.97484,"ModerateBurden",13245
 "Augusta State University","University","Richmond","GA","Substantial",32,16.04,79,93,35,9.95,202518,TRUE,33.47593,-82.02354,"ModerateBurden",13245
 "Augusta-Richmond County Museum","Museum","Richmond","GA","Substantial",32,16.04,79,93,35,9.95,202518,TRUE,33.47014,-81.96206,"ModerateBurden",13245
-"National Science Center‎","Museum","Richmond","GA","Substantial",32,16.04,79,93,35,9.95,202518,TRUE,33.47641,-81.9623,"ModerateBurden",13245
+"National Science Center<U+200E>","Museum","Richmond","GA","Substantial",32,16.04,79,93,35,9.95,202518,TRUE,33.47641,-81.9623,"ModerateBurden",13245
 "Sturdevant-McKee Museum","Museum","Holt","NE","High",32,8.42,84,0,39,5.16,10067,TRUE,42.52861,-98.97843,"ModerateBurdenResolving",31089
 "White Horse Ranch Museum","Museum","Holt","NE","High",32,8.42,84,0,39,5.16,10067,TRUE,42.59917,-99.1426,"ModerateBurdenResolving",31089
 "Timberlake","Populated Place","Campbell","VA","High",32,6.68,72,NA,39,4.57,54885,TRUE,37.3207,-79.25753,"SustainedHotspot",51031
@@ -10837,7 +10837,7 @@
 "Batesville","Populated Place","Independence","AR","High",31,21.77,75,96,37,14.52,37825,TRUE,35.7698,-91.64097,"SustainedHotspot",5063
 "Booneville","Populated Place","Prentiss","MS","High",31,19.59,79,3,40,13.57,25126,TRUE,34.65815,-88.56672,"SustainedHotspot",28117
 "Buckskin Joe Amusement Park","Amusement Park","Fremont","CO","High",31,8.47,81,100,40,5.17,47839,TRUE,38.4783,-105.32872,"SustainedHotspot",8043
-"Cañon City","Populated Place","Fremont","CO","High",31,8.47,81,100,40,5.17,47839,TRUE,38.44098,-105.24245,"SustainedHotspot",8043
+"Ca<U+00F1>on City","Populated Place","Fremont","CO","High",31,8.47,81,100,40,5.17,47839,TRUE,38.44098,-105.24245,"SustainedHotspot",8043
 "Pike Pioneer Museum","Museum","Pike","AL","High",31,16.76,85,29,38,12.74,33114,TRUE,31.8246,-85.99634,"ModerateBurden",1109
 "Troy","Populated Place","Pike","AL","High",31,16.76,85,29,38,12.74,33114,TRUE,31.80877,-85.96995,"ModerateBurden",1109
 "Bowling Green","Populated Place","Warren","KY","High",31,16.94,88,98,35,10.91,132896,TRUE,36.99032,-86.4436,"SustainedHotspot",21227
