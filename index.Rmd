@@ -106,13 +106,6 @@ last_observation <- max(time_data2$Date)
 time_data2_12_to_17 <- subset(time_data2, Group=="12-17" & Type=="FullyVaccinated" & !is.na(Percentage))
 print(usmap::plot_usmap(data=time_data2_12_to_17, values="Percentage", color=NA) + theme(legend.position = "none") + theme(legend.position = "bottom") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_stepsn(colours=c("purple4", "darkmagenta", head(rev(pals::turbo(6)),5), "blue"), breaks=c(10,20, 30, 40, 50, 60, 70), limits=c(0,100)) + labs(caption="From vacciCation.org") + labs(fill = "% Fully\nVaccinated") + ggtitle(paste0("Vaccination rate for those age 12-17\n(data from ",last_observation, ")" )))
 
-time_data2_under_12 <- time_data2
-time_data2_under_12$Percentage <- 0
-time_data2_under_12 <- subset(time_data2_under_12, Type=="FullyVaccinated" & !duplicated(FIPS))
-print(usmap::plot_usmap(data=time_data2_under_12, values="Percentage", color=NA) + theme(legend.position = "none") + theme(legend.position = "bottom") + theme(plot.title = element_text(size=14, face="bold", hjust=0.5)) + scale_fill_stepsn(colours=c("purple4", "darkmagenta", head(rev(pals::turbo(6)),5), "blue"), breaks=c(10,20, 30, 40, 50, 60, 70), limits=c(0,100)) + labs(caption="From vacciCation.org") + labs(fill = "% Fully\nVaccinated") + ggtitle(paste0("Vaccination rate for those younger than 12" )))
-
-
-
 ```
 
 ```{r, echo=FALSE, eval=FALSE, dpi=72, out.width="800px"}
